@@ -5,14 +5,8 @@ class ScoreManager:
     """Class to manage game scoring and levels."""
 
     def __init__(self):
-        self._score = 0
-        self._level = 1
         self._lines_cleared = 0
-
-    @property
-    def score(self) -> int:
-        """Get the current score."""
-        return self._score
+        self._level = 1
 
     @property
     def level(self) -> int:
@@ -24,9 +18,16 @@ class ScoreManager:
         """Get the number of lines cleared."""
         return self._lines_cleared
 
-    def update_score(self, lines: int) -> None:
-        """Update the score based on the number of lines cleared."""
-        scoring = {1: 40, 2: 100, 3: 300, 4: 1200}
-        self._score += scoring.get(lines, 0) * self._level
+    def update_lines_cleared(self, lines: int) -> None:
+        """Update the total number of lines cleared.
+
+        Args:
+            lines (int): The number of lines cleared.
+        """
         self._lines_cleared += lines
+        self.update_level()
+
+    def update_level(self) -> None:
+        """Update the game level based on lines cleared."""
+        # Increase level every 10 lines cleared (optional)
         self._level = self._lines_cleared // 10 + 1

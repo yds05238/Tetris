@@ -80,16 +80,16 @@ class Renderer:
                         )
 
     def draw_ui(self, score_manager: ScoreManager) -> None:
-        """Draw UI elements like score and level.
+        """Draw UI elements like lines cleared and level.
 
         Args:
             score_manager (ScoreManager): The score manager.
         """
-        score_text = self.font.render(
-            f"Score: {score_manager.score}", True, COLORS["WHITE"]
+        lines_text = self.font.render(
+            f"Lines Cleared: {score_manager.lines_cleared}", True, COLORS["WHITE"]
         )
         level_text = self.font.render(
             f"Level: {score_manager.level}", True, COLORS["WHITE"]
         )
-        self.screen.blit(score_text, (10, 10))
+        self.screen.blit(lines_text, (10, 10))
         self.screen.blit(level_text, (10, 30))

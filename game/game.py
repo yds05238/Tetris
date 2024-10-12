@@ -67,7 +67,11 @@ class Game:
     def update(self) -> None:
         """Update the game state."""
         current_time = pygame.time.get_ticks()
-        if current_time - self.last_drop_time > self.drop_interval:
+        # Adjust drop interval based on level (if desired)
+        adjusted_drop_interval = max(
+            100, self.drop_interval - (self.score_manager.level - 1) * 50
+        )
+        if current_time - self.last_drop_time > adjusted_drop_interval:
             new_position = Position(
                 self.current_tetromino.position.x, self.current_tetromino.position.y + 1
             )
@@ -77,13 +81,17 @@ class Game:
                 self.board.place_tetromino(self.current_tetromino)
                 lines_cleared = self.board.clear_lines()
                 if lines_cleared > 0:
-                    self.score_manager.update_score(lines_cleared)
+                    self.score_manager.update_lines_cleared(lines_cleared)
                 self.current_tetromino = self.get_new_tetromino()
                 if not self.board.is_valid_position(
                     self.current_tetromino, self.current_tetromino.position
                 ):
                     self.is_game_over = True
+                    print("########################")
                     print("Game Over!")
+                    print(f"Lines Cleared: {self.score_manager.lines_cleared}")
+                    print("########################")
+
             self.last_drop_time = current_time
 
     def render(self) -> None:
