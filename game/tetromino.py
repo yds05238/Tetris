@@ -43,10 +43,14 @@ class Tetromino(Movable, Rotatable, ABC):
 
     def move(self, dx: int, dy: int) -> None:
         """Move the tetromino by dx and dy."""
-        self._position.x += dx
-        self._position.y += dy
+        self._position.move(dx, dy)
 
-    @abstractmethod
     def rotate(self) -> None:
-        """Rotate the tetromino."""
-        pass
+        """Rotate the tetromino clockwise."""
+        self._shape = [list(row) for row in zip(*self._shape[::-1])]
+
+    def rotate_counter_clockwise(self) -> None:
+        """Rotate the tetromino counter-clockwise."""
+        # Transpose and then reverse each row
+        self._shape = [list(row) for row in zip(*self._shape)]
+        self._shape = self._shape[::-1]

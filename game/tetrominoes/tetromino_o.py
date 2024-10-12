@@ -13,6 +13,9 @@ class TetrominoO(Tetromino):
         super().__init__(shape, Color.YELLOW)
 
     def rotate(self) -> None:
-        """Rotate the tetromino (O tetromino does not change on rotation)."""
-        # The O tetromino does not change shape on rotation
+        """Rotate the tetromino clockwise (no effect for 'O')."""
+        pass
+
+    def rotate_counter_clockwise(self) -> None:
+        """Rotate the tetromino counter-clockwise (no effect for 'O')."""
         pass
