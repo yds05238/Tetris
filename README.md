@@ -81,3 +81,11 @@ Tetris
 - Constants Module
   - Stores constant values used across the game (e.g. colors, screen dimensions, etc)
   - Usage: Import constants wherever needed to avoid magic numbers
+
+
+
+## Extensions
+- Testing: Write unit tests for each classes
+- Logging: Implmenet logging to help with debugging + monitoring
+- Performance: Optimize rendering by only updating parts of the screen that changes
+- Exception handling: Gracefully handle exceptions to prevent crashes
