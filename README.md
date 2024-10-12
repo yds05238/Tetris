@@ -89,3 +89,7 @@ Tetris
 - Logging: Implmenet logging to help with debugging + monitoring
 - Performance: Optimize rendering by only updating parts of the screen that changes
 - Exception handling: Gracefully handle exceptions to prevent crashes
+- Untie game speed from fps/computer performance
+- Add pause/exit/resume options
+- Add sound effects
+- Add background music
