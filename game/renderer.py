@@ -19,7 +19,8 @@ class Renderer:
             screen (Any): The Pygame screen surface.
         """
         self.screen = screen
-        self.font = pygame.font.SysFont("Arial", 18)
+        self.font = pygame.font.SysFont("Arial", 24)
+        self.large_font = pygame.font.SysFont("Arial", 48)
 
     def draw_board(self, board: Board) -> None:
         """Draw the game board.
@@ -93,3 +94,33 @@ class Renderer:
         )
         self.screen.blit(lines_text, (10, 10))
         self.screen.blit(level_text, (10, 30))
+
+    def draw_home_screen(self) -> None:
+        """Draw the home screen."""
+        title_text = self.large_font.render("TETRIS", True, COLORS["WHITE"])
+        instruction_text = self.font.render(
+            "Press SPACE to Start", True, COLORS["WHITE"]
+        )
+        self.screen.blit(
+            title_text,
+            ((SCREEN_WIDTH - title_text.get_width()) // 2, SCREEN_HEIGHT // 3),
+        )
+        self.screen.blit(
+            instruction_text,
+            ((SCREEN_WIDTH - instruction_text.get_width()) // 2, SCREEN_HEIGHT // 2),
+        )
+
+    def draw_game_over_screen(self) -> None:
+        """Draw the game over screen."""
+        game_over_text = self.large_font.render("GAME OVER", True, COLORS["WHITE"])
+        instruction_text = self.font.render(
+            "Press R to Restart or Q to Quit", True, COLORS["WHITE"]
+        )
+        self.screen.blit(
+            game_over_text,
+            ((SCREEN_WIDTH - game_over_text.get_width()) // 2, SCREEN_HEIGHT // 3),
+        )
+        self.screen.blit(
+            instruction_text,
+            ((SCREEN_WIDTH - instruction_text.get_width()) // 2, SCREEN_HEIGHT // 2),
+        )

@@ -1,6 +1,6 @@
 # game/enums.py
 
-from enum import Enum, auto
+from enum import Enum
 
 
 class Color(Enum):
@@ -19,7 +19,16 @@ class Color(Enum):
 class Direction(Enum):
     """Enumeration for movement directions."""
 
-    LEFT = auto()
-    RIGHT = auto()
-    DOWN = auto()
-    UP = auto()
+    LEFT = "LEFT"
+    RIGHT = "RIGHT"
+    DOWN = "DOWN"
+    UP = "UP"
+
+
+class GameState(Enum):
+    """Enumeration for the game states."""
+
+    HOME_SCREEN = "HOME_SCREEN"
+    RUNNING = "RUNNING"
+    PAUSED = "PAUSED"
+    GAME_OVER = "GAME_OVER"

@@ -9,18 +9,36 @@ from game.enums import Direction
 class InputHandler:
     """Class to handle user inputs."""
 
-    def process_events(self, events, tetromino: Tetromino, board: Board) -> bool:
-        """
-        Process input events.
+    def process_home_screen_events(self, events, game) -> bool:
+        """Process input events on the home screen.
+
         Args:
             events: List of Pygame events.
-            tetromino (Tetromino): The current tetromino.
-            board (Board): The game board.
+            game (Game): The game instance.
+
         Returns:
             bool: False if the game should quit, True otherwise.
         """
         for event in events:
-            # TODO: switch to case statements
+            if event.type == pygame.QUIT:
+                return False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    game.start_game()
+        return True
+
+    def process_events(self, events, tetromino: Tetromino, board: Board) -> bool:
+        """Process input events during the game.
+
+        Args:
+            events: List of Pygame events.
+            tetromino (Tetromino): The current tetromino.
+            board (Board): The game board.
+
+        Returns:
+            bool: False if the game should quit, True otherwise.
+        """
+        for event in events:
             if event.type == pygame.QUIT:
                 return False
             elif event.type == pygame.KEYDOWN:
@@ -36,6 +54,29 @@ class InputHandler:
                     self.rotate_tetromino_counter_clockwise(tetromino, board)
                 elif event.key == pygame.K_SPACE:
                     self.hard_drop(tetromino, board)
+
+            # Handle other events as needed
+
+        return True
+
+    def process_game_over_events(self, events, game) -> bool:
+        """Process input events on the game over screen.
+
+        Args:
+            events: List of Pygame events.
+            game (Game): The game instance.
+
+        Returns:
+            bool: False if the game should quit, True otherwise.
+        """
+        for event in events:
+            if event.type == pygame.QUIT:
+                return False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_r:
+                    game.start_game()  # Restart the game
+                elif event.key == pygame.K_q:
+                    return False
         return True
 
     def move_tetromino(
